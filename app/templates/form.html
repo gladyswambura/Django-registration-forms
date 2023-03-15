@@ -1,0 +1,32 @@
+<!-- form.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Form Page</h1>
+        <hr>
+        <form method="POST" action="{% url 'form' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="dropdown">Dropdown:</label>
+                <select class="form-control" id="dropdown" name="dropdown" required>
+                    <option disabled selected>Select an option</option>
+                    {% if name == 'X' %}
+                        <option value="a">a</option>
+                        <option value="b">b</option>
+                        <option value="c">c</option>
+                    {% elif name == 'Y' %}
+                        <option value="k">k</option>
+                        <option value="l">l</option>
+                        <option value="m">m</option>
+                    {% endif %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}
