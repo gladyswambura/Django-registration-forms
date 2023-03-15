@@ -15,3 +15,6 @@ class SignUpView(generic.CreateView):
 
     def get_success_url(self):
         return self.success_url
+    
+class LoginView(generic.LoginView):
+    template_name = 'login.html'
