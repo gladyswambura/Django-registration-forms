@@ -4,7 +4,7 @@ This is a simple Django web application that includes a login page with Google a
 ### Installation
 To run this project locally, follow these steps:
 
-Clone the GitHub repository: git clone https://github.com/your-username/your-repo.git
+Clone the GitHub repository: git clone https://github.com/gladyswambura/Django-registration-forms.git
 Navigate into the project directory: cd django-login-form
 Install the required packages: pip install -r requirements.txt
 Create a superuser account: python manage.py createsuperuser
