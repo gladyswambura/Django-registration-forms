@@ -4,6 +4,9 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def  homepage(request):
@@ -28,4 +31,19 @@ class LoginView(LoginView):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'registration/profile.html')
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile has been updated.')
+            return redirect('profile_edit')
+    else:
+        form = ProfileEditForm(instance=request.user.profile)
+    return render(request, 'registration/profile_edit.html', {'form': form})
+
+def form(request):
+    return render(request, 'form.html')
