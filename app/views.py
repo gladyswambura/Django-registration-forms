@@ -26,3 +26,6 @@ def SignUpView(request):
 class LoginView(LoginView):
     template_name = 'login.html'
 
+
+def profile(request):
+    return render(request, 'profile.html')
