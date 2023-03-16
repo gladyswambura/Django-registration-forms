@@ -1,24 +1,17 @@
-<!-- login.html -->
 {% extends 'base.html' %}
 
 {% block content %}
     <div class="container">
         <h1>Login Page</h1>
         <hr>
-        <form method="POST" action="{% url 'login' %}">
+        <form method="POST" action="account_login">
             {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
+            {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Login</button>
+
         </form>
         <hr>
         <p class="text-center">Or</p>
-        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger btn-block">Login with Google</a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-sm btn-danger btn-block">Login with Google</a>
     </div>
 {% endblock %}

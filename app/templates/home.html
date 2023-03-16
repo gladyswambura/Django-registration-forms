@@ -3,15 +3,20 @@
 
 {% block content %}
     <div class="jumbotron">
-        <h1 class="display-4">Welcome to My Website!</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <h1 class="display-4">Welcome to Gladys' Website!</h1>
         <hr class="my-4">
         {% if user.is_authenticated %}
             <p class="lead">You are logged in as {{ user.username }}.</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'form' %}" role="button">Go to Form &raquo;</a>
+            <a class="btn btn-primary btn-lg" href="form" role="button">Go to Form &raquo;</a>
+            <a class="btn btn-secondary btn-lg" href="{% url 'logout' %}" role="button">Logout »</a>
         {% else %}
-            <p class="lead">Please log in or sign up to continue.</p>
-            <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Login &raquo;</a>
-            <a class="btn btn-secondary btn-lg" href="{% url 'register' %}" role="button">Sign up &raquo;</a>
+            <p class="lead">Please sign up to continue.</p>
+            <a class="btn btn-secondary btn-lg" href="signup" role="button">Sign up &raquo;</a>
         {% endif %}
     </div>
 {% endblock %}

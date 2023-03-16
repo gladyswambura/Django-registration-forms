@@ -1,11 +1,21 @@
-<!-- form.html -->
 {% extends 'base.html' %}
 
 {% block content %}
     <div class="container">
         <h1>Form Page</h1>
-        <hr>
-        <form method="POST" action="{% url 'form' %}">
+        <div class="container">
+            <hr>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            <form method="POST" action="{% url 'form' %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -15,18 +25,15 @@
                 <label for="dropdown">Dropdown:</label>
                 <select class="form-control" id="dropdown" name="dropdown" required>
                     <option disabled selected>Select an option</option>
-                    {% if name == 'X' %}
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                        <option value="c">c</option>
-                    {% elif name == 'Y' %}
-                        <option value="k">k</option>
-                        <option value="l">l</option>
-                        <option value="m">m</option>
-                    {% endif %}
+                        <option value="a">Monday</option>
+                        <option value="b">Tuesday</option>
+                        <option value="c">Wednesday</option>
+                        <option value="c">Thuursday</option>
+                        <option value="c">Friday</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    
 {% endblock %}

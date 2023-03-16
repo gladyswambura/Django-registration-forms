@@ -10,7 +10,9 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def  homepage(request):
-    return  render(request=request, template_name= 'home.html',)
+    if request.method == 'POST':
+        messages.success(request, 'Form submitted successfully!')
+    return render(request, 'home.html')
 
 def SignUpView(request):
     if request.method == 'POST':
@@ -46,4 +48,11 @@ def profile_edit(request):
     return render(request, 'registration/profile_edit.html', {'form': form})
 
 def form(request):
-    return render(request, 'form.html')
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        dropdown = request.POST.get('dropdown')
+        
+        messages.success(request, 'Form submitted successfully!')
+        return redirect('/')
+    else:
+        return render(request, 'form.html')
