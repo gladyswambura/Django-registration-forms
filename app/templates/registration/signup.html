@@ -1,0 +1,17 @@
+<!-- signup.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Sign Up Page</h1>
+        <hr>
+        <form method="POST" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+        <hr>
+        <p class="text-center">Or</p>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger btn-block">Sign Up with Google</a>
+    </div>
+{% endblock %}
